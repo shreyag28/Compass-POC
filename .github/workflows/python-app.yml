@@ -51,19 +51,20 @@ jobs:
         coverage report -m
         pwd
 
+        
+
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: .coverage
+        path: coverage.xml
         
-
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage-report
-        path: djangoapp/  
-
+    - name: Display path of uploaded artifact
+      run: |
+        echo "Uploaded coverage report is available at: ${{ github.workspace }}/coverage.xml"   
+          
+        
+        
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
