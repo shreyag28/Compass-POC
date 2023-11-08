@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: self-hosted
+    runs-on: self-hosted #created new one
 
     steps:
     - name: Checkout code
