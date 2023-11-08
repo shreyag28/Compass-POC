@@ -47,6 +47,7 @@ jobs:
       run: |
         pip install coverage
         coverage run manage.py test
+       # pwd
         coverage report -m
 
     - name: Upload Coverage Report
