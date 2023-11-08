@@ -55,10 +55,6 @@ jobs:
         name: coverage-report
         path: .coverage   
 
-    - name: Install Docker
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install docker.io
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
