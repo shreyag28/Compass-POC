@@ -36,6 +36,18 @@ jobs:
         python3 manage.py migrate  
         python3 manage.py test
 
+
+    - name: Run Tests and Generate Coverage Report
+      run: |
+        coverage run manage.py test
+        coverage report -m
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: .coverage   
+
     - name: Send Success Rate to Compass
       run: |
        curl -X POST -H "Authorization: Bearer $COMPASS_API_TOKEN" -H "Content-Type: application/json" \
