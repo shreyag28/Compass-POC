@@ -47,8 +47,9 @@ jobs:
       run: |
         pip install coverage
         coverage run manage.py test
-       # pwd
+        pwd
         coverage report -m
+        pwd
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v2
