@@ -13,15 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Docker
-      uses: docker/setup-docker@v2
-      with:
-        docker-version: '20.10.10'  
-
-    - name: Set up Python
+    - name: Set up Python and Docker
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9 # Specify your desired Python version
+        python-version: 3.9
+        docker: true
+
+  # - name: Set up Python
+  #    uses: actions/setup-python@v2
+  #    with:
+  #      python-version: 3.9 # Specify your desired Python version
 
     - name: Create virtual environment
       run: python -m venv venv
