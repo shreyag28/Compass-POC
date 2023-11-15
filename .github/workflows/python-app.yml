@@ -66,17 +66,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
 
-    - name: Set up Docker
-      uses: actions/setup-docker@v2
-      with:
-        dockerfile: Dockerfile  # Path to your Dockerfile     
-
-    - name: Build docker image
-    - run: | 
-        docker build -t 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }} .
-        docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
-        docker push 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }}
-
+   
     - name: Send Success Rate to Compass
       run: |
        curl -X POST -H "Authorization: Bearer $COMPASS_API_TOKEN" -H "Content-Type: application/json" \
