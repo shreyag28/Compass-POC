@@ -64,7 +64,7 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: d6014bfdfcc0d1782fe3747e5f7647d7047a1e5b  
+        SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
 
     - name: Send Success Rate to Compass
       run: |
