@@ -64,7 +64,7 @@ jobs:
         
     - run: | 
         docker build -t shreyag123/pythonapp:${{ github.run_number }} .
-        docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} https://hub.docker.com/
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} https://index.docker.io/v1/
         docker push shreyag123/pythonapp:${{ github.run_number }}
     
 
