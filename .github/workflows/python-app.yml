@@ -57,23 +57,6 @@ jobs:
         name: coverage-report
         path: .
 
-    - name: Download Artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage-report
-        path: ./downloaded-artifact   # Specify the path to download the artifact to
-
-    - name: List Contents of Downloaded Artifact
-      run: |
-        ls -R ./downloaded-artifact   
-        
-    - name: Display path of uploaded artifact
-      run: |
-        echo "sonar.python.coverage.reportPaths=${{ steps.upload-artifact.outputs.artifactpath }}/coverage-report/coverage.xml" >> sonar-project.properties  
-          
-        
-        
-
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
