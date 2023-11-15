@@ -67,6 +67,18 @@ jobs:
         docker build -t shreyag123/pythonapp:${{ github.run_number }} .
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} https://index.docker.io/v1/
         docker push shreyag123/pythonapp:${{ github.run_number }}
+
+
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with:
+            status: ${{job.status}}
+            steps:  ${{toJson(steps)}}
+            channel: 'compass-pythonapp'
+            if: always()
+      env:
+           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}	
+    
     
 
    
