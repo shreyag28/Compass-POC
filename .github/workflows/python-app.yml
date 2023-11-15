@@ -48,8 +48,11 @@ jobs:
         pip install coverage
         coverage run manage.py test
         pwd
-        coverage report -m
+        coverage xml -o coverage-report/coverage.xml
         pwd
+
+    - name: Copy coverage report to project directory
+      run: cp coverage-report/coverage.xml ${{ github.workspace }}  
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v2
