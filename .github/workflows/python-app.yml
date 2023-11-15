@@ -63,9 +63,9 @@ jobs:
         SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
         
     - run: | 
-        docker build -t 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }} .
-        docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
-        docker push 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }}
+        docker build -t shreya-github-action/pythonapp:${{ github.run_number }} .
+        docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} https://hub.docker.com/
+        docker push shreya-github-action/pythonapp:${{ github.run_number }}
     
 
    
