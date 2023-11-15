@@ -6,8 +6,9 @@ on:
       - master  # Customize this to your main branch
 
 jobs:
-  build-and-test:
+  deployment-build-and-test:
     runs-on: self-hosted #created new one
+    environment: production
 
     steps:
     - name: Checkout code
@@ -62,6 +63,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
         
+    - name: deploy     
     - run: | 
         docker build -t shreyag123/pythonapp:${{ github.run_number }} .
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} https://index.docker.io/v1/
