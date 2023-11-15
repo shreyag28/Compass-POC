@@ -54,17 +54,19 @@ jobs:
     - name: Copy coverage report to project directory
       run: cp coverage-report/coverage.xml ${{ github.workspace }}  
 
-    - name: Upload Coverage Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: .
+   
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
+        
+    - run: | 
+        docker build -t 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }} .
+        docker login -u ${{ secrets.JFROG_USERNAME }} -p ${{ secrets.JFROG_PASSWORD }} http://172.27.59.80:8082
+        docker push 172.27.59.80:8082/shreya-github-action/pythonapp:${{ github.run_number }}
+    
 
    
     - name: Send Success Rate to Compass
