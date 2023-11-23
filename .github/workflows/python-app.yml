@@ -22,11 +22,6 @@ jobs:
         python-version: 3.9
         docker: true
 
-  # - name: Set up Python
-  #    uses: actions/setup-python@v2
-  #    with:
-  #      python-version: 3.9 # Specify your desired Python version
-
     - name: Create virtual environment
       run: python -m venv venv
 
@@ -71,7 +66,7 @@ jobs:
         docker push shreyag123/pythonapp:$IMAGE_TAG
 
     - run: |
-            docker rm -f db djangoapp
+           # docker rm -f db djangoapp
             docker-compose up -d            
 
     - name: Trivy Scan Report
