@@ -8,6 +8,8 @@ on:
 jobs:
   deployment-build-and-test:
     runs-on: self-hosted #created new one
+    env:
+      IMAGE_TAG: ${{ github.sha }}
     environment: production
 
     steps:
@@ -64,9 +66,21 @@ jobs:
         SONAR_TOKEN:  ${{ secrets.SONAR_TOKEN }}  
             
     - run: | 
-        docker build -t shreyag123/pythonapp:${{ github.run_number }} .
+        docker build -t shreyag123/pythonapp:$IMAGE_TAG .
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} https://index.docker.io/v1/
-        docker push shreyag123/pythonapp:${{ github.run_number }}
+        docker push shreyag123/pythonapp:$IMAGE_TAG
+
+    - run: |
+            docker rm -f db djangoapp
+            docker-compose up -d            
+
+    - name: Trivy Scan Report
+      uses: aquasecurity/trivy-action@master
+      with:
+          image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
+          format: template
+          template: "@/contrib/html.tpl"
+          output: trivy-report.html        
 
 
     - name: Slack Notification
