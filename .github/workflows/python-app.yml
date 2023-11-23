@@ -66,7 +66,6 @@ jobs:
         docker push shreyag123/pythonapp:$IMAGE_TAG
 
     - run: |
-           # docker rm -f db djangoapp
             docker-compose up -d            
 
     - name: Trivy Scan Report
