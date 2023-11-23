@@ -52,8 +52,12 @@ jobs:
     - name: Copy coverage report to project directory
       run: cp coverage-report/coverage.xml ${{ github.workspace }}  
 
-   
 
+    - name: Stop PostgreSQL service
+      run: |
+        sudo service postgresql stop || true
+        sudo systemctl stop postgresql || true
+        
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
