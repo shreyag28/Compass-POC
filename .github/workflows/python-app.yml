@@ -1,9 +1,12 @@
 name: Python Build and Test
 
-on:
-  push:
-    branches:
-      - master  # Customize this to your main branch
+# on:
+ # push:
+  #  branches:
+   #   - master  # Customize this to your main branch
+on: 
+  workflow_dispatch
+   
 
 jobs:
   deployment-build-and-test:
