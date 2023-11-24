@@ -85,9 +85,10 @@ jobs:
 
 
     - name: Slack Notification
-      uses: act10ns/slack@v1
+      uses: slackapi/slack-github-action@v1.24.0
+  
       with:
-            status: ${{job.status}}
+            slack-message: "Build Status: ${{ job.status }}"
             steps:  ${{toJson(steps)}}
             channel: 'compass-pythonapp'
             if: always()
