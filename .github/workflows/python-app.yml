@@ -88,8 +88,8 @@ jobs:
 
 
     - name: Slack Notification
+      id: slack
       uses: slackapi/slack-github-action@v1.24.0
-  
       with:
             slack-message: "Build Status: ${{ job.status }}"
             steps:  ${{toJson(steps)}}
