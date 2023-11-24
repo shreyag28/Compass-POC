@@ -82,8 +82,13 @@ jobs:
           image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
           format: template
           template: "@/contrib/html.tpl"
-          output: trivy-report.html        
-
+          output: trivy-report.html      
+          
+    - name: Archive Trivy Report
+      uses: actions/upload-artifact@v3
+      with:
+          name: reports 
+          path: trivy-report.html
 
     - name: Slack Notification
       uses: act10ns/slack@v1
