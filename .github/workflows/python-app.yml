@@ -10,7 +10,7 @@ on:
 
 jobs:
   deployment-build-and-test:
-    runs-on: self-hosted #created new one
+    runs-on: ubuntu-latest #created new one
     env:
       IMAGE_TAG: ${{ github.run_number }}
     environment: production
