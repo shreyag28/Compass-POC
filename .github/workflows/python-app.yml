@@ -104,7 +104,7 @@ jobs:
     - name: Send Metrics to Compass
       run: |
           trivy-report=$(cat trivy-report.html) 
-          metric_value=$(echo "$trivy-report" | jq -r '.Severity')
+          metric_value=$(echo "$trivy_report" | jq -r '.Severity')
           curl --request POST \
             --url https://cybagejanshreya.atlassian.net/gateway/api/compass/v1/metrics \
             --user "$USER_EMAIL:$USER_API_KEY" \
