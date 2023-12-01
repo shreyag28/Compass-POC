@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-i^+p(k#)*9+ftcxvic&7@=x8=h%8%708*3-96k0#e)na8eyob6
 DEBUG = True
 
  # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['3.215.121.236', '3.215.121.236:8000']
+ALLOWED_HOSTS = ['54.81.170.242', '54.81.170.242:8000']
 
 
 
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': os.environ.get('PG_DB', 'postgres'),
         'USER': os.environ.get('PG_USER', 'postgres'),
         'PASSWORD': os.environ.get('PG_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('PG_HOST', '3.215.121.236'),
+        'HOST': os.environ.get('PG_HOST', '54.81.170.242'),
         'PORT': os.environ.get('PG_PORT', '5432'),
     }
 }
