@@ -113,7 +113,9 @@ jobs:
               \"value\": 34,
               \"timestamp\": \"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"
             }"    
- 
+      env:
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_API_KEY: ${{ secrets.USER_API_KEY }}
 
 
            
