@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest #created new one
     env:
       IMAGE_TAG: ${{ github.run_number }}
-    environment: production
+    environment: staging 
 
     steps:
     - name: Checkout code
