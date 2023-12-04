@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest #created new one
+    runs-on: self-hosted #created new one
     env:
       IMAGE_TAG: ${{ github.run_number }}
     environment: staging 
