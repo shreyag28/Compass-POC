@@ -80,20 +80,21 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
           image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
-          format: template
-          template: "@/contrib/html.tpl"
-          output: trivy-report.html      
+         # format: template
+         # template: "@/contrib/html.tpl"
+         # output: trivy-report.html     
+          output: trivy-report.json
           
     - name: Archive Trivy Report
       uses: actions/upload-artifact@v3
       with:
           name: reports 
-          path: trivy-report.html
+          path: trivy-report.json
 
    
     - name: Send Metrics to Compass
       run: |
-         trivy_report=$(cat trivy-report.html)
+         trivy_report=$(cat trivy-report.json)
          metric_value=$(echo "$trivy_report" | jq -r '.[0].Vulnerabilities | length')
          curl --request POST \
           --url https://cybagejanshreya.atlassian.net/gateway/api/compass/v1/metrics \
