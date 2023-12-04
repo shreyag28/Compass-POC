@@ -94,6 +94,7 @@ jobs:
    
     - name: Send Metrics to Compass
       run: |
+         chmod +x count_vulnerabilities.py
          metric_value=python count_vulnerabilities.py < trivy-report.json
          curl --request POST \
           --url https://cybagejanshreya.atlassian.net/gateway/api/compass/v1/metrics \
