@@ -90,17 +90,7 @@ jobs:
           name: reports 
           path: trivy-report.html
 
-    - name: Slack Notification
-      uses: act10ns/slack@v1
-      with:
-            status: ${{job.status}}
-            steps:  ${{toJson(steps)}}
-            channel: 'compass-pythonapp'
-            if: always()
-      env:
-           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
- 
+   
     - name: Send Metrics to Compass
       run: |
          trivy_report=$(cat trivy-report.html)
@@ -115,10 +105,22 @@ jobs:
          \"value\": $metric_value,
           \"timestamp\": \"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"
            }"
+         echo "Process completed successfully"
 
       env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_API_KEY: ${{ secrets.USER_API_KEY }}
+
+
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with:
+            status: ${{job.status}}
+            steps:  ${{toJson(steps)}}
+            channel: 'compass-pythonapp'
+            if: always()
+      env:
+           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}      
 
 
            
