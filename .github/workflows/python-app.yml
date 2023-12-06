@@ -108,7 +108,7 @@ jobs:
       run: |
          chmod +x $GITHUB_WORKSPACE/count_vulnerabilities.py
          metric_value=$(python3 $GITHUB_WORKSPACE/count_vulnerabilities.py < trivy-report.json)
-         echo "Metrics value: $metric_value"
+         echo "Metrics value is: $metric_value"
          curl --request POST \
           --url https://cybagejanshreya.atlassian.net/gateway/api/compass/v1/metrics \
           --user "$USER_EMAIL:$USER_API_KEY" \
