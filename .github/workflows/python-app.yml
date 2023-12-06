@@ -83,16 +83,17 @@ jobs:
          # format: template
          # template: "@/contrib/html.tpl"
          # output: trivy-report.html     
-   #       output: trivy-report.json
+  
 
 
 
     - name: Run Trivy and generate simple JSON report
       uses: aquasecurity/trivy-action@master
       with:
+          image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
           format: json
           output: trivy-report.json
-          image: docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}
+      
 
           
     - name: Archive Trivy Report
