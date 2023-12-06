@@ -26,7 +26,7 @@ try:
     count_vulnerability_id(report_data)
 
     # Print the total count of 'VulnerabilityID' occurrences
-    print("Occurrences of 'VulnerabilityID':", vulnerability_id_count)
+    print(vulnerability_id_count)
 
 except Exception as e:
     # Print an error message if there's an exception during script execution
