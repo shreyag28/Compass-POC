@@ -76,14 +76,19 @@ jobs:
             docker-compose up -d          
 
     
-    - name: Trivy Scan Report
-      uses: aquasecurity/trivy-action@master
-      with:
-          image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
+#    - name: Trivy Scan Report
+ #     uses: aquasecurity/trivy-action@master
+  #    with:
+   #       image-ref: 'docker.io/shreyag123/pythonapp:${{ env.IMAGE_TAG }}'
          # format: template
          # template: "@/contrib/html.tpl"
          # output: trivy-report.html     
-          output: trivy-report.json
+   #       output: trivy-report.json
+
+    - name: Run Trivy and generate simple JSON report
+       run:|
+           trivy --format json --output trivy-report.json shreyag123/pythonapp:${{ env.IMAGE_TAG }}
+
           
     - name: Archive Trivy Report
       uses: actions/upload-artifact@v3
