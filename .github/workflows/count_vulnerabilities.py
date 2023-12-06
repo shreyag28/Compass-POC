@@ -8,7 +8,7 @@ report_data = json.load(sys.stdin)
 print("Complete JSON Data:", report_data)
 
 # Count the number of vulnerabilities
-vulnerability_count = len(report_data.get("Vulnerabilities", []))
+vulnerability_count = len(report_data.get("VulnerabilityID", []))
 
 # Print the vulnerability count
 print("Vulnerability count:", vulnerability_count)
