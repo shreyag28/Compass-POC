@@ -2,25 +2,32 @@
 import json
 import sys
 
-# Read the JSON data from stdin
-report_data = json.load(sys.stdin)
+try:
+    # Read the JSON data from stdin
+    report_data = json.load(sys.stdin)
 
-# Print the entire JSON data for inspection
-#print("Complete JSON Data:", report_data)
+    # Initialize a counter for 'VulnerabilityID' occurrences
+    vulnerability_id_count = 0
 
-# Count the number of vulnerabilities
-# vulnerability_count = len(report_data.get("VulnerabilityID", []))
-# vulnerability_count = len(report_data['VulnerabilityID'])
+    # Function to recursively count occurrences of 'VulnerabilityID'
+    def count_vulnerability_id(obj):
+        global vulnerability_id_count
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                if key == 'VulnerabilityID':
+                    vulnerability_id_count += 1
+                else:
+                    count_vulnerability_id(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                count_vulnerability_id(item)
 
-if 'VulnerabilityID' in report_data:
-    # Extract the list of vulnerabilities
-    vulnerabilities = report_data['VulnerabilityID']
+    # Call the function to count occurrences
+    count_vulnerability_id(report_data)
 
-    # Count the occurrences of 'VulnerabilityID' in the list
-    vulnerability_count = sum(1 for vulnerability in vulnerabilities if 'VulnerabilityID' in vulnerability)
-    # Print the vulnerability count
-    print("Vulnerability count:", vulnerability_count)
+    # Print the total count of 'VulnerabilityID' occurrences
+    print("Occurrences of 'VulnerabilityID':", vulnerability_id_count)
 
-
-
-
+except Exception as e:
+    # Print an error message if there's an exception during script execution
+    print("Error:", str(e))
