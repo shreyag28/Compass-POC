@@ -71,6 +71,7 @@ jobs:
         docker build -t shreyag123/pythonapp:$IMAGE_TAG .
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} https://index.docker.io/v1/
         docker push shreyag123/pythonapp:$IMAGE_TAG
+        
 
     - run: |
             docker-compose up -d          
@@ -94,7 +95,6 @@ jobs:
           format: json
           output: trivy-report.json
       
-
           
     - name: Archive Trivy Report
       uses: actions/upload-artifact@v3
