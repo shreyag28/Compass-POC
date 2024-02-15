@@ -13,7 +13,7 @@ jobs:
     runs-on: self-hosted #created new one
     env:
       IMAGE_TAG: ${{ github.run_number }}
-    environment: staging 
+    environment: production
 
     steps:
     - name: Checkout code
